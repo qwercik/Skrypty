@@ -19,12 +19,16 @@ else
 	exit 1
 fi
 
-cat $filename | \
+counter=0
+
 while read line; do
 	entity_name=`echo $line | cut -d: -f1`
 	entity_id=`echo $line | cut -d: -f3`
 	
 	if [ $entity_id -ge 1000 ]; then
 		echo $entity_name
+		counter=$(($counter + 1))
 	fi
-done
+done < $filename
+
+echo "Total $1 $counter"
