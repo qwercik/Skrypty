@@ -23,12 +23,16 @@ else:
     print('Invalid operation')
     exit(1)
 
+counter = 0
 with open(filename) as file:
-    entities = file.read().splitlines();
+    entities = file.read().splitlines()
+
     for entity in entities:
         entity_name = entity.split(':')[0]
         entity_id = int(entity.split(':')[2])
 
         if entity_id > 1000:
             print(entity_name)
+            counter += 1
 
+print('Total', sys.argv[1], counter)
